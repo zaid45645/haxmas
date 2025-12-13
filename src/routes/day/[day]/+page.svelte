@@ -209,4 +209,66 @@
 		background-color: rgba(0, 0, 0, 0.3);
 		color: #ffffff;
 	}
+
+	@media (max-width: 768px) {
+		.day-wrapper {
+			padding: 1rem;
+		}
+
+		.markdown-content {
+			padding: 1.5rem;
+			border-radius: 12px;
+		}
+
+		.markdown-content :global(h1) {
+			font-size: 1.75rem;
+		}
+
+		.markdown-content :global(h2) {
+			font-size: 1.35rem;
+		}
+
+		.markdown-content :global(h3) {
+			font-size: 1.15rem;
+		}
+
+		.markdown-content :global(p),
+		.markdown-content :global(li) {
+			font-size: 0.95rem;
+		}
+
+		.markdown-content :global(pre) {
+			padding: 0.75rem;
+			font-size: 0.85rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.day-wrapper {
+			padding: 0.75rem;
+		}
+
+		.markdown-content {
+			padding: 1rem;
+		}
+
+		.markdown-content :global(h1) {
+			font-size: 1.5rem;
+			padding-bottom: 0.5rem;
+		}
+
+		.markdown-content :global(h2) {
+			font-size: 1.2rem;
+		}
+
+		.markdown-content :global(pre) {
+			padding: 0.5rem;
+			font-size: 0.8rem;
+			overflow-x: auto;
+		}
+
+		.back-link {
+			font-size: 0.9rem;
+		}
+	}
 </style>

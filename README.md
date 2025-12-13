@@ -6,6 +6,7 @@
 
 ```bash
 
+cp example.env .env # then fill out .env
 npx knex migrate:latest
 npm i
 npm run dev

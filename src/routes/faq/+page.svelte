@@ -124,4 +124,43 @@
 	.faq-item a:hover {
 		text-decoration: underline;
 	}
+
+	@media (max-width: 768px) {
+		.faq-section {
+			padding: 3rem 1rem;
+		}
+
+		.faq-title {
+			font-size: 2rem;
+		}
+
+		.faq-item h3 {
+			font-size: 1.1rem;
+		}
+
+		.faq-item p,
+		.faq-item li {
+			font-size: 0.95rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.faq-section {
+			padding: 2rem 0.75rem;
+		}
+
+		.faq-title {
+			font-size: 1.75rem;
+		}
+
+		.faq-item h3 {
+			font-size: 1rem;
+		}
+
+		.faq-item p,
+		.faq-item li {
+			font-size: 0.9rem;
+			line-height: 1.6;
+		}
+	}
 </style>
