@@ -39,7 +39,7 @@
 			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U081C6XT885-33b2afdb56fb-512'
 		},
 		{
-			username: 'Ruby',
+			username: 'Rudy',
 			url: '#',
 			desc: 'Day 2',
 			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U079HV9PTC7-4c64c3b31d28-512'
@@ -67,7 +67,43 @@
 			url: 'https://arcaege.dev/',
 			desc: 'Day 6',
 			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U09192704Q7-8275736cf9d9-512'
-		}
+		},
+		{
+			username: 'Astra',
+			url: 'https://astracelestine.nekoweb.org/',
+			desc: 'Day 7',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U089924LMK8-8a93f050126f-512'
+		},
+		{
+			username: 'Miguel',
+			url: 'https://shymike.dev/',
+			desc: 'Day 8',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U07VC9705D4-6113dfcf4805-512'
+		},
+		{
+			username: 'Taggie',
+			url: 'https://yip.cat',
+			desc: 'Day 9',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U091NVAJA3F-e6a3dfb74715-512'
+		},
+		{
+			username: 'Charmunk',
+			url: 'https://ivie.codes',
+			desc: 'Day 10',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U07UV4R2G4T-61a467a806c5-512'
+		},
+		{
+			username: 'Raygen Rupe',
+			url: 'https://github.com/lordbagel42/',
+			desc: 'Day 11',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U08R4KDL6UF-68444436aa76-512'
+		},
+		{
+			username: 'Aditya',
+			url: 'https://github.com/dragonsenseiguy',
+			desc: 'Day 12',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U09H4M0523Z-0962acd8d44d-512'
+		},
 	];
 
 	function goToPerson(url: string) {
@@ -140,7 +176,7 @@
 		align-items: center;
 		padding: 2rem;
 		padding-bottom: 100px;
-		overflow: hidden;
+		overflow: scroll;
         background-color: #4285f4;
 	}
 
