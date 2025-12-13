@@ -3,8 +3,15 @@
 	import { markedHighlight } from 'marked-highlight';
 	import hljs from 'highlight.js';
 	import { onMount } from 'svelte';
+	import { CURRENT_DAY } from '../../../consts';
 
-	let { data } = $props();
+	type PageProps = {
+		data: {
+			day: string;
+		};
+	};
+
+	let { data }: PageProps = $props();
 
 	let markdownContent = $state('');
 	let htmlContent = $state('');
@@ -20,7 +27,18 @@
 	);
 
 	onMount(async () => {
-		const res = await fetch(`https://raw.githubusercontent.com/hackclub/hackmas-day-${data.day}/refs/heads/main/README.md`);
+		const day = parseInt(data.day, 10);
+		if (day < 1 || day > 12 || isNaN(day) || !Number.isInteger(day)) {
+			htmlContent = '<h1>Invalid day.</h1><p>Please select a day between 1 and 12.</p>';
+			return;
+		}
+		if (day > CURRENT_DAY) {
+			htmlContent = `<h1>Day ${day} is not available yet.</h1><p>Please come back on December ${day + 12} to see the content!</p>`;
+			return;
+		}
+		const res = await fetch(
+			`https://raw.githubusercontent.com/hackclub/hackmas-day-${day}/refs/heads/main/README.md`
+		);
 		if (res.ok) {
 			markdownContent = await res.text();
 			htmlContent = await marked(markdownContent);
@@ -30,13 +48,16 @@
 
 <svelte:head>
 	<title>Day {data.day} | Haxmas</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+	<link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+	/>
 </svelte:head>
 
 <div class="day-wrapper">
 	<div class="container">
 		<a href="/" class="back-link">← Back to Home</a>
-		
+
 		<div class="markdown-content">
 			{@html htmlContent}
 		</div>
