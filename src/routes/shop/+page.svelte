@@ -21,7 +21,7 @@
 				{/if}
 				<div class="item-info">
 					<h3>{item.name}</h3>
-					<p class="cost">{item.cost} snowflakes</p>
+					<p class="cost">{item.cost}</p>
 				</div>
 			</div>
 		{/each}

@@ -16,7 +16,7 @@ interface AirtableAttachment {
 interface ShopItem {
 	id: string;
 	name: string;
-	cost: number;
+	cost: string;
 	image: string | null;
 	order: number;
 }
@@ -25,7 +25,7 @@ interface AirtableRecord {
 	id: string;
 	fields: {
 		'Item Name': string;
-		Cost: number;
+		Cost: string;
 		Image?: AirtableAttachment[];
 		Order?: number;
 	};
