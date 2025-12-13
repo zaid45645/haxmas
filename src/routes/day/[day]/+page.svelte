@@ -4,7 +4,13 @@
 	import hljs from 'highlight.js';
 	import { onMount } from 'svelte';
 
-	let { data } = $props();
+	type PageProps = {
+		data: {
+			day: number;
+		};
+	};
+
+	let { data }: PageProps = $props();
 
 	let markdownContent = $state('');
 	let htmlContent = $state('');
@@ -20,6 +26,10 @@
 	);
 
 	onMount(async () => {
+		if (data.day < 1 || data.day > 12 || isNaN(data.day)) {
+			htmlContent = '<h1>Invalid day.</h1><p>Please select a day between 1 and 12.</p>';
+			return;
+		}
 		const res = await fetch(
 			`https://raw.githubusercontent.com/hackclub/hackmas-day-${data.day}/refs/heads/main/README.md`
 		);
