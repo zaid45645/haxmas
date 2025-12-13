@@ -1,14 +1,39 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { CURRENT_DAY } from '../consts';
 
-	function handlePresentClick(event: MouseEvent) {
-		const present = event.currentTarget;
-		gsap
-			.timeline()
-			.to(present, { y: -30, duration: 0.15, ease: 'power2.out' })
-			.to(present, { y: 0, duration: 0.3, ease: 'bounce.out' });
-		alert('Coming soon!');
+	type Present = {
+		day: number;
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+		fill: string;
+		ribbonFill: string;
+	};
+
+	const RIBBON_THICKNESS = 6;
+	const LABEL_OFFSET = 15;
+	const LABEL_COLOR = '#4285f4';
+
+	const presents: Present[] = [
+		{ day: 1, x: 150, y: 900, width: 80, height: 60, fill: 'hsla(-150, 45%, 45%, 1)', ribbonFill: 'hsla(30, 45%, 70%, 0.75)' },
+		{ day: 2, x: 320, y: 880, width: 100, height: 80, fill: 'hsla(-100, 40%, 35%, 1)', ribbonFill: 'hsla(80, 40%, 60%, 0.75)' },
+		{ day: 3, x: 480, y: 910, width: 55, height: 50, fill: 'hsla(-80, 50%, 40%, 1)', ribbonFill: 'hsla(100, 50%, 65%, 0.75)' },
+		{ day: 4, x: 620, y: 890, width: 70, height: 70, fill: 'hsla(-200, 42%, 38%, 1)', ribbonFill: 'hsla(-20, 42%, 63%, 0.75)' },
+		{ day: 5, x: 780, y: 905, width: 90, height: 55, fill: 'hsla(-120, 48%, 42%, 1)', ribbonFill: 'hsla(60, 48%, 67%, 0.75)' },
+		{ day: 6, x: 950, y: 885, width: 65, height: 75, fill: 'hsla(-180, 44%, 36%, 1)', ribbonFill: 'hsla(0, 44%, 61%, 0.75)' },
+		{ day: 7, x: 1100, y: 895, width: 85, height: 65, fill: 'hsla(-140, 46%, 44%, 1)', ribbonFill: 'hsla(40, 46%, 69%, 0.75)' },
+		{ day: 8, x: 1280, y: 900, width: 60, height: 60, fill: 'hsla(-90, 50%, 40%, 1)', ribbonFill: 'hsla(90, 50%, 65%, 0.75)' },
+		{ day: 9, x: 1420, y: 880, width: 95, height: 80, fill: 'hsla(-160, 43%, 37%, 1)', ribbonFill: 'hsla(20, 43%, 62%, 0.75)' },
+		{ day: 10, x: 1580, y: 910, width: 50, height: 50, fill: 'hsla(-110, 47%, 41%, 1)', ribbonFill: 'hsla(70, 47%, 66%, 0.75)' },
+		{ day: 11, x: 1700, y: 890, width: 75, height: 70, fill: 'hsla(-130, 45%, 39%, 1)', ribbonFill: 'hsla(50, 45%, 64%, 0.75)' },
+		{ day: 12, x: 1820, y: 905, width: 70, height: 55, fill: 'hsla(-170, 41%, 43%, 1)', ribbonFill: 'hsla(10, 41%, 68%, 0.75)' }
+	];
+
+	function handleLockedPresentClick(_event: Event, day: number) {
+		alert(`Day ${day} unlocks on December ${day + 12}.`);
 	}
 
 	onMount(() => {
@@ -815,110 +840,73 @@
 
 		<!-- Presents on snow -->
 		<g id="presents" transform="translate(0, -80)">
-			<!-- Present 1 - Day 1 -->
-			<a href="/day/1" class="present-link">
-				<g class="present">
-					<text
-						x="190"
-						y="885"
-						text-anchor="middle"
-						fill="#4285f4"
-						font-size="24"
-						font-weight="bold">Day 1</text
+			{#each presents as present}
+				{#if present.day <= CURRENT_DAY}
+					<a href={`/day/${present.day}`} class="present-link">
+						<g class="present">
+							<text
+								x={present.x + present.width / 2}
+								y={present.y - LABEL_OFFSET}
+								text-anchor="middle"
+								fill={LABEL_COLOR}
+								font-size="24"
+								font-weight="bold">Day {present.day}</text
+							>
+							<rect
+								x={present.x}
+								y={present.y}
+								width={present.width}
+								height={present.height}
+								fill={present.fill}
+							/>
+							<rect
+								x={present.x}
+								y={present.y + (present.height - RIBBON_THICKNESS) / 2}
+								width={present.width}
+								height={RIBBON_THICKNESS}
+								fill={present.ribbonFill}
+							/>
+							<rect
+								x={present.x + (present.width - RIBBON_THICKNESS) / 2}
+								y={present.y}
+								width={RIBBON_THICKNESS}
+								height={present.height}
+								fill={present.ribbonFill}
+							/>
+						</g>
+					</a>
+				{:else}
+					<g
+						class="present"
+						role="button"
+						tabindex="0"
+						on:click={(event) => handleLockedPresentClick(event, present.day)}
+						on:keydown={(event) => handleLockedPresentClick(event, present.day)}
 					>
-					<rect x="150" y="900" width="80" height="60" fill="hsla(-150, 45%, 45%, 1)" />
-					<rect x="150" y="927" width="80" height="6" fill="hsla(30, 45%, 70%, 0.75)" />
-					<rect x="187" y="900" width="6" height="60" fill="hsla(30, 45%, 70%, 0.75)" />
-				</g>
-			</a>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="320" y="880" width="100" height="80" fill="hsla(-100, 40%, 35%, 1)" />
-				<rect x="320" y="917" width="100" height="6" fill="hsla(80, 40%, 60%, 0.75)" />
-				<rect x="367" y="880" width="6" height="80" fill="hsla(80, 40%, 60%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="480" y="910" width="55" height="50" fill="hsla(-80, 50%, 40%, 1)" />
-				<rect x="480" y="932" width="55" height="6" fill="hsla(100, 50%, 65%, 0.75)" />
-				<rect x="504" y="910" width="6" height="50" fill="hsla(100, 50%, 65%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="620" y="890" width="70" height="70" fill="hsla(-200, 42%, 38%, 1)" />
-				<rect x="620" y="922" width="70" height="6" fill="hsla(-20, 42%, 63%, 0.75)" />
-				<rect x="652" y="890" width="6" height="70" fill="hsla(-20, 42%, 63%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="780" y="905" width="90" height="55" fill="hsla(-120, 48%, 42%, 1)" />
-				<rect x="780" y="930" width="90" height="6" fill="hsla(60, 48%, 67%, 0.75)" />
-				<rect x="822" y="905" width="6" height="55" fill="hsla(60, 48%, 67%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="950" y="885" width="65" height="75" fill="hsla(-180, 44%, 36%, 1)" />
-				<rect x="950" y="920" width="65" height="6" fill="hsla(0, 44%, 61%, 0.75)" />
-				<rect x="980" y="885" width="6" height="75" fill="hsla(0, 44%, 61%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1100" y="895" width="85" height="65" fill="hsla(-140, 46%, 44%, 1)" />
-				<rect x="1100" y="925" width="85" height="6" fill="hsla(40, 46%, 69%, 0.75)" />
-				<rect x="1140" y="895" width="6" height="65" fill="hsla(40, 46%, 69%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1280" y="900" width="60" height="60" fill="hsla(-90, 50%, 40%, 1)" />
-				<rect x="1280" y="927" width="60" height="6" fill="hsla(90, 50%, 65%, 0.75)" />
-				<rect x="1307" y="900" width="6" height="60" fill="hsla(90, 50%, 65%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1420" y="880" width="95" height="80" fill="hsla(-160, 43%, 37%, 1)" />
-				<rect x="1420" y="917" width="95" height="6" fill="hsla(20, 43%, 62%, 0.75)" />
-				<rect x="1465" y="880" width="6" height="80" fill="hsla(20, 43%, 62%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1580" y="910" width="50" height="50" fill="hsla(-110, 47%, 41%, 1)" />
-				<rect x="1580" y="932" width="50" height="6" fill="hsla(70, 47%, 66%, 0.75)" />
-				<rect x="1602" y="910" width="6" height="50" fill="hsla(70, 47%, 66%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1700" y="890" width="75" height="70" fill="hsla(-130, 45%, 39%, 1)" />
-				<rect x="1700" y="922" width="75" height="6" fill="hsla(50, 45%, 64%, 0.75)" />
-				<rect x="1735" y="890" width="6" height="70" fill="hsla(50, 45%, 64%, 0.75)" />
-			</g>
-
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
-			<g class="present" onclick={handlePresentClick}>
-				<rect x="1820" y="905" width="70" height="55" fill="hsla(-170, 41%, 43%, 1)" />
-				<rect x="1820" y="930" width="70" height="6" fill="hsla(10, 41%, 68%, 0.75)" />
-				<rect x="1852" y="905" width="6" height="55" fill="hsla(10, 41%, 68%, 0.75)" />
-			</g>
+						<rect
+							x={present.x}
+							y={present.y}
+							width={present.width}
+							height={present.height}
+							fill={present.fill}
+						/>
+						<rect
+							x={present.x}
+							y={present.y + (present.height - RIBBON_THICKNESS) / 2}
+							width={present.width}
+							height={RIBBON_THICKNESS}
+							fill={present.ribbonFill}
+						/>
+						<rect
+							x={present.x + (present.width - RIBBON_THICKNESS) / 2}
+							y={present.y}
+							width={RIBBON_THICKNESS}
+							height={present.height}
+							fill={present.ribbonFill}
+						/>
+					</g>
+				{/if}
+			{/each}
 		</g>
 	</svg>
 </div>

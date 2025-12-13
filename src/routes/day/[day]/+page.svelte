@@ -3,10 +3,11 @@
 	import { markedHighlight } from 'marked-highlight';
 	import hljs from 'highlight.js';
 	import { onMount } from 'svelte';
+	import { CURRENT_DAY } from '../../../consts';
 
 	type PageProps = {
 		data: {
-			day: number;
+			day: string;
 		};
 	};
 
@@ -26,12 +27,17 @@
 	);
 
 	onMount(async () => {
-		if (data.day < 1 || data.day > 12 || isNaN(data.day)) {
+		const day = parseInt(data.day, 10);
+		if (day < 1 || day > 12 || isNaN(day) || !Number.isInteger(day)) {
 			htmlContent = '<h1>Invalid day.</h1><p>Please select a day between 1 and 12.</p>';
 			return;
 		}
+		if (day > CURRENT_DAY) {
+			htmlContent = `<h1>Day ${day} is not available yet.</h1><p>Please come back on December ${day + 12} to see the content!</p>`;
+			return;
+		}
 		const res = await fetch(
-			`https://raw.githubusercontent.com/hackclub/hackmas-day-${data.day}/refs/heads/main/README.md`
+			`https://raw.githubusercontent.com/hackclub/hackmas-day-${day}/refs/heads/main/README.md`
 		);
 		if (res.ok) {
 			markdownContent = await res.text();

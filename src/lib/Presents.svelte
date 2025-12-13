@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { CURRENT_DAY } from '../consts';
 
 	interface Present {
-		x: number;
-		y: number;
 		width: number;
 		height: number;
 		color: string;
@@ -45,15 +44,11 @@
 			let w = Math.floor(range(random(), 0, 1, 30, 110));
 			let h = Math.floor(range(random(), 0, 1, 30, 110));
 			let spread = width / 2 - 50;
-			let x = Math.floor(ox + range(random(), 0, 1, -spread, spread) - w * 0.5);
-			let y = offset;
 
 			let presentBl = range(random(), 0, 1, 35, 85);
 			const presentColor = `hsla(${presentBh - 120},${presentBs}%,${presentBl - 15}%,1.0)`;
 
 			generated.push({
-				x,
-				y,
 				width: w,
 				height: h,
 				color: presentColor,
@@ -95,9 +90,9 @@
 
 <div class="presents-container">
 	{#each presents as present, i}
-		<div class="present-wrapper" style="left: {present.x}px; bottom: {present.y}px;">
-			{#if i === 0}
-				<span class="day-label">Day 1</span>
+		<div class="present-wrapper">
+			{#if i < CURRENT_DAY - 1}
+				<span class="day-label">Day {i + 1}</span>
 			{/if}
 			<button
 				class="present"
@@ -138,17 +133,24 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 150px;
+		min-height: 150px;
 		z-index: 50;
 		pointer-events: none;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: flex-end;
+		gap: 12px;
+		padding: 0 16px 16px;
+		box-sizing: border-box;
 	}
 
 	.present-wrapper {
-		position: absolute;
 		pointer-events: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		flex: 0 0 auto;
 	}
 
 	.day-label {
