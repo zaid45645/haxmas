@@ -33,33 +33,33 @@
 </button>
 
 <style>
-  .present-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .present-button:hover {
-    transform: scale(1.1) translateY(-10px);
-  }
-  
-  .present-svg {
-    width: 120px;
-    height: auto;
-    display: block;
-  }
+	.present-button {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		transition: transform 0.2s ease;
+	}
 
-  @media (max-width: 768px) {
-    .present-svg {
-      width: 100px;
-    }
-  }
+	.present-button:hover {
+		transform: scale(1.1) translateY(-10px);
+	}
 
-  @media (max-width: 480px) {
-    .present-svg {
-      width: 85px;
-    }
-  }
+	.present-svg {
+		width: 120px;
+		height: auto;
+		display: block;
+	}
+
+	@media (max-width: 768px) {
+		.present-svg {
+			width: 100px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.present-svg {
+			width: 85px;
+		}
+	}
 </style>

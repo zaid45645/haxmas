@@ -121,25 +121,24 @@
 </div>
 
 <style>
-  .container {
-    position: relative;
-    z-index: 100;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    padding-bottom: 200px;
-  }
+	.container {
+		position: relative;
+		z-index: 100;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 2rem;
+		padding-bottom: 200px;
+	}
 
-  h1 {
-    color: #fff;
-    font-size: 3rem;
-    margin-bottom: 3rem;
-    text-align: center;
-    padding: 0 1rem;
-  }
-
+	h1 {
+		color: #fff;
+		font-size: 3rem;
+		margin-bottom: 3rem;
+		text-align: center;
+		padding: 0 1rem;
+	}
 
 	h1 {
 		color: #fff;
@@ -162,35 +161,35 @@
 		}
 	}
 
-  @media (max-width: 480px) {
-    .days-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-    }
+	@media (max-width: 480px) {
+		.days-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+		}
 
-    h1 {
-      font-size: 1.75rem;
-      margin-bottom: 1.5rem;
-    }
-  }
+		h1 {
+			font-size: 1.75rem;
+			margin-bottom: 1.5rem;
+		}
+	}
 
-  @media (max-width: 768px) {
-    .container {
-      padding: 1rem;
-      padding-top: 2rem;
-      padding-bottom: 120px;
-    }
+	@media (max-width: 768px) {
+		.container {
+			padding: 1rem;
+			padding-top: 2rem;
+			padding-bottom: 120px;
+		}
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+		h1 {
+			font-size: 2rem;
+			margin-bottom: 2rem;
+		}
 
-    .days-grid {
-      gap: 1.25rem;
-      max-width: 100%;
-    }
-  }
+		.days-grid {
+			gap: 1.25rem;
+			max-width: 100%;
+		}
+	}
 
 	.back-button {
 		margin-top: 2rem;
