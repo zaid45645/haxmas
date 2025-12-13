@@ -15,7 +15,7 @@
 </script>
 
 <ChristmasCountdown />
-<ChristmasAnimaton />
+<ChristmasAnimation />
 <XmasTree />
 
 <div class="button-container">
