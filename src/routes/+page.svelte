@@ -135,17 +135,13 @@
 </div>
 
 <style>
-	:global(body) {
-		overflow: hidden;
-		position: fixed;
-		width: 100%;
-		height: 100%;
-	}
-
 	.container {
-		position: relative;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		z-index: 100;
-		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
