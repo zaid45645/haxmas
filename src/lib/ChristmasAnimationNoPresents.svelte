@@ -914,4 +914,21 @@
         overflow: visible;
         visibility: hidden;
     }
+
+    @media (max-width: 768px) {
+        #container {
+            height: 100vh;
+            height: 100dvh;
+        }
+
+        :global(.txt) {
+            font-size: 36px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        :global(.txt) {
+            font-size: 28px;
+        }
+    }
 </style>

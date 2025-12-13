@@ -50,4 +50,16 @@
     height: auto;
     display: block;
   }
+
+  @media (max-width: 768px) {
+    .present-svg {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .present-svg {
+      width: 85px;
+    }
+  }
 </style>

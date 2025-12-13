@@ -321,7 +321,36 @@
 			font-size: 3rem;
 		}
 
+		.hero-section {
+			height: auto;
+			min-height: 100vh;
+			min-height: 100dvh;
+			padding-top: 5rem;
+			padding-bottom: 2rem;
+		}
 
+		.hero-content {
+			padding: 1rem;
+		}
+
+		.hero-logo {
+			max-width: 280px;
+		}
+
+		.info-box {
+			padding: 1.5rem;
+			margin: 1rem;
+			width: calc(100% - 2rem);
+		}
+
+		.info-box p {
+			font-size: 1rem;
+		}
+
+		.login-header {
+			top: 0.5rem;
+			right: 0.5rem;
+		}
 
 		.hero-tree {
 			width: 80px;
@@ -338,6 +367,49 @@
 
 		.cta-title {
 			font-size: 1.5rem;
+		}
+
+		.faq-section {
+			padding: 3rem 1rem;
+		}
+
+		.faq-title {
+			font-size: 2rem;
+		}
+
+		.faq-item h3 {
+			font-size: 1.1rem;
+		}
+
+		.faq-item p,
+		.faq-item li {
+			font-size: 0.95rem;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.hero-section {
+			padding-top: 4rem;
+		}
+
+		.hero-logo {
+			max-width: 220px;
+		}
+
+		.info-box {
+			padding: 1rem;
+		}
+
+		.info-box p {
+			font-size: 0.9rem;
+		}
+
+		.faq-section {
+			padding: 2rem 0.75rem;
+		}
+
+		.faq-title {
+			font-size: 1.75rem;
 		}
 	}
 

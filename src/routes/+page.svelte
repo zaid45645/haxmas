@@ -3,7 +3,14 @@
     import Button from "$lib/Button.svelte";
     import ChristmasCountdown from "$lib/ChristmasCountdown.svelte";
     import XmasTree from "$lib/XmasTree.svelte";
-  import { redirect } from "@sveltejs/kit";
+    import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
+
+    onMount(() => {
+        if (window.innerWidth <= 768) {
+            goto("/mobile");
+        }
+    });
 
     function comingSoon() {
         alert("Coming very soon!");
@@ -40,5 +47,21 @@
     z-index: 200;
   }
 
+  @media (max-width: 768px) {
+    .button-container {
+      bottom: 1rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0 1rem;
+      max-width: 100%;
+    }
+  }
 
+  @media (max-width: 480px) {
+    .button-container {
+      bottom: 0.75rem;
+      gap: 0.4rem;
+    }
+  }
 </style>

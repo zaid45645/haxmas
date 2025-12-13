@@ -11,7 +11,7 @@
   }
 
   const days: Day[] = [
-    { day: 1, url: 'https://forms.hackclub.com/haxmas-day-1', boxColor: 'hsla(-150, 45%, 45%, 1)', ribbonColor: 'hsla(30, 45%, 70%, 0.75)' },
+    { day: 1, url: '/day/1', boxColor: 'hsla(-150, 45%, 45%, 1)', ribbonColor: 'hsla(30, 45%, 70%, 0.75)' },
     { day: 2, url: '#', boxColor: 'hsla(-100, 40%, 35%, 1)', ribbonColor: 'hsla(80, 40%, 60%, 0.75)' },
     { day: 3, url: '#', boxColor: 'hsla(-80, 50%, 40%, 1)', ribbonColor: 'hsla(100, 50%, 65%, 0.75)' },
     { day: 4, url: '#', boxColor: 'hsla(-200, 42%, 38%, 1)', ribbonColor: 'hsla(-20, 42%, 63%, 0.75)' },
@@ -36,12 +36,24 @@
   function goBack() {
     window.location.href = '/';
   }
+
+  function comingSoon() {
+    alert("Coming very soon!");
+  }
+
+  function goToDays() {
+    window.location.href = "/submit";
+  }
+
+  function faq() {
+    window.location.href = "/faq";
+  }
 </script>
 
 <ChristmasAnimationNoPresents />
 
 <div class="container">
-  <h1>Choose a day to submit</h1>
+  <h1>Haxmas</h1>
   
   <div class="days-grid">
     {#each days as day}
@@ -54,21 +66,32 @@
     {/each}
   </div>
 
-  <div class="back-button">
-    <Button on:click={goBack}>Back</Button>
-  </div>
+<div class="button-container">
+    <Button on:click={goToDays}>Submit</Button>
+    <Button on:click={comingSoon}>Shop</Button>
+    <Button on:click="{faq}">FAQ</Button>
+    <Button href="/auth/logout">Log Out</Button>
+</div>
 </div>
 
 <style>
+  :global(body) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
   .container {
     position: relative;
     z-index: 100;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
+    overflow: hidden;
   }
 
   h1 {
@@ -125,7 +148,18 @@
     }
   }
 
-  .back-button {
-    margin-top: 2rem;
+  .button-container {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    z-index: 200;
+    padding: 0 0.5rem;
+    max-width: 100%;
+    width: calc(100% - 1rem);
   }
 </style>

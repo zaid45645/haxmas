@@ -118,6 +118,38 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .xmasTree {
+      font-size: 12px;
+      top: 35%;
+    }
+
+    .xmasTree:before {
+      font-size: 36px;
+      line-height: 36px;
+      height: 36px;
+      width: 36px;
+      top: 6px;
+      left: -12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .xmasTree {
+      font-size: 10px;
+      top: 38%;
+    }
+
+    .xmasTree:before {
+      font-size: 30px;
+      line-height: 30px;
+      height: 30px;
+      width: 30px;
+      top: 5px;
+      left: -10px;
+    }
+  }
+
   @keyframes xmasTree {
     25% {
       box-shadow:
