@@ -29,6 +29,12 @@
 			desc: 'Shop/Budget',
 			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U06LWHNLL3B-81181a884eb3-512'
 		},
+		{
+			username: 'Ren',
+			url: 'https://github.com/electricxangel',
+			desc: 'Art/Design',
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U081SNW7JUA-a855231b9e3d-512'
+		},
 	];
 
 	const ambassadors: Person[] = [
@@ -134,7 +140,7 @@
 <div class="container">
 	<h1>Organizers</h1>
 
-	<div class="orgs-grid">
+	<div class="orgs-grid four">
 		{#each orgs as org}
 			<button class="org-card" on:click={() => goToPerson(org.url)}>
 				<img src={org.pfp} alt={org.username} class="pfp" />
@@ -194,6 +200,11 @@
 		gap: 1.5rem;
 		max-width: 750px;
 		width: 100%;
+	}
+
+	.four {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.5rem;
 	}
 
 	@media (max-width: 768px) {
