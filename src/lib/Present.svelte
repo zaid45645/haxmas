@@ -53,13 +53,23 @@
 
 	@media (max-width: 768px) {
 		.present-svg {
-			width: 100px;
+			width: 90px;
 		}
 	}
 
 	@media (max-width: 480px) {
 		.present-svg {
-			width: 85px;
+			width: 70px;
+		}
+
+		.present-button:hover {
+			transform: scale(1.05) translateY(-5px);
+		}
+	}
+
+	@media (max-width: 360px) {
+		.present-svg {
+			width: 80px;
 		}
 	}
 </style>

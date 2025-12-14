@@ -154,7 +154,9 @@
 		align-items: center;
 		padding: 2rem;
 		padding-bottom: 100px;
-		overflow: hidden;
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	h1 {
@@ -163,6 +165,7 @@
 		margin-bottom: 3rem;
 		text-align: center;
 		padding: 0 1rem;
+		flex-shrink: 0;
 	}
 
 	.days-grid {
@@ -171,42 +174,8 @@
 		gap: 2rem;
 		max-width: 600px;
 		width: 100%;
-	}
-
-	@media (max-width: 768px) {
-		.days-grid {
-			grid-template-columns: repeat(3, 1fr);
-		}
-	}
-
-	@media (max-width: 480px) {
-		.days-grid {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 1rem;
-		}
-
-		h1 {
-			font-size: 1.75rem;
-			margin-bottom: 1.5rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.container {
-			padding: 1rem;
-			padding-top: 2rem;
-			padding-bottom: 120px;
-		}
-
-		h1 {
-			font-size: 2rem;
-			margin-bottom: 2rem;
-		}
-
-		.days-grid {
-			gap: 1.25rem;
-			max-width: 100%;
-		}
+		flex-shrink: 0;
+		padding-bottom: 1rem;
 	}
 
 	.button-container {
@@ -222,5 +191,75 @@
 		padding: 0 0.5rem;
 		max-width: 100%;
 		width: calc(100% - 1rem);
+	}
+
+	@media (max-width: 768px) {
+		.container {
+			padding: 1rem;
+			padding-top: 1.5rem;
+			padding-bottom: 80px;
+		}
+
+		h1 {
+			font-size: 2rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.days-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1rem;
+			max-width: 350px;
+			justify-items: center;
+		}
+
+		.button-container {
+			bottom: 1.5rem;
+			left: 50%;
+			transform: translateX(-50%);
+			width: calc(100% - 1rem);
+			flex-wrap: nowrap;
+			padding: 0.5rem;
+			padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+		}
+	}
+
+	@media (max-width: 480px) {
+		.container {
+			padding: 0.75rem;
+			padding-top: 1rem;
+			padding-bottom: 70px;
+		}
+
+		h1 {
+			font-size: 1.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.days-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 0.5rem;
+			max-width: 280px;
+		}
+
+		.button-container {
+			gap: 0.35rem;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.days-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-height: 600px) {
+		.container {
+			padding-top: 0.5rem;
+		}
+
+		h1 {
+			font-size: 1.5rem;
+			margin-bottom: 0.75rem;
+		}
 	}
 </style>
