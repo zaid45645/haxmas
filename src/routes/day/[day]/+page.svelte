@@ -15,6 +15,13 @@
 
 	let markdownContent = $state('');
 	let htmlContent = $state('');
+	let isClosed = $state(false);
+
+	function isDayClosed(day: number): boolean {
+		const openDateEST = new Date(`2025-12-${day + 12}T00:00:00-05:00`);
+		const closeDateEST = new Date(openDateEST.getTime() + 24 * 60 * 60 * 1000);
+		return new Date() > closeDateEST;
+	}
 
 	marked.use(
 		markedHighlight({
@@ -42,6 +49,7 @@
 		if (res.ok) {
 			markdownContent = await res.text();
 			htmlContent = await marked(markdownContent);
+			isClosed = isDayClosed(day);
 		}
 	});
 </script>
@@ -58,6 +66,12 @@
 	<div class="container">
 		<a href="/" class="back-link">← Back to Home</a>
 
+		{#if isClosed}
+			<div class="closed-banner">
+				Closed - This day is no longer accepting submissions
+			</div>
+		{/if}
+
 		<div class="markdown-content">
 			{@html htmlContent}
 		</div>
@@ -65,6 +79,17 @@
 </div>
 
 <style>
+	.closed-banner {
+		background-color: #ec3750;
+		color: #fff;
+		text-align: center;
+		padding: 1.5rem 2rem;
+		font-size: 1.5rem;
+		font-weight: bold;
+		border-radius: 12px;
+		margin-bottom: 1.5rem;
+	}
+
 	.day-wrapper {
 		min-height: 100vh;
 		background-color: #4285f4;
