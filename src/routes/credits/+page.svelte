@@ -81,10 +81,10 @@
 			pfp: 'https://hc-cdn.hel1.your-objectstorage.com/s/v3/b709a840207ec0c0_e09v59wqy1e-u089924lmk8-781361d188a9-512.png'
 		},
 		{
-			username: 'Miguel',
-			url: 'https://shymike.dev/',
+			username: 'Aditya',
+			url: 'https://github.com/dragonsenseiguy',
 			desc: 'Day 8',
-			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U07VC9705D4-6113dfcf4805-512'
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U09H4M0523Z-0962acd8d44d-512'
 		},
 		{
 			username: 'Taggie',
@@ -105,11 +105,11 @@
 			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U08R4KDL6UF-68444436aa76-512'
 		},
 		{
-			username: 'Aditya',
-			url: 'https://github.com/dragonsenseiguy',
+			username: 'Miguel',
+			url: 'https://shymike.dev/',
 			desc: 'Day 12',
-			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U09H4M0523Z-0962acd8d44d-512'
-		},
+			pfp: 'https://ca.slack-edge.com/E09V59WQY1E-U07VC9705D4-6113dfcf4805-512'
+		}
 	];
 
 	function goToPerson(url: string) {
